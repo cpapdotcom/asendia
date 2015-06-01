@@ -27,7 +27,7 @@ class Xml
         $xmlFormat = '<?xml version="1.0" encoding="ISO-8859-1" standalone="no" ?><%s />';
         $xml = sprintf($xmlFormat, $rootElementName);
         $xmlElement = new SimpleXMLElement($xml);
-        $xmlElement = static::arrayToXml($properties, $xmlElement);
+        $xmlElement = self::arrayToXml($properties, $xmlElement);
 
         return $xmlElement;
     }
@@ -49,7 +49,7 @@ class Xml
                 } else {
                     foreach ($value as $childValue) {
                         $child = $xml->addChild("$key");
-                        static::arrayToXml($childValue, $child);
+                        self::arrayToXml($childValue, $child);
                     }
                 }
             } else {
