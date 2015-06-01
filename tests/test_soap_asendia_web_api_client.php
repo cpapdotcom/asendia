@@ -164,8 +164,6 @@ function test_retrieve_label_as_png()
     $tempnam = tempnam(sys_get_temp_dir(), 'asendia_pngf_label');
     $png_label->writeContentToFile($tempnam);
 
-    echo " ::: $tempnam\n";
-
     return
         $filename === $png_label->getLabelFile() &&
         'Test PNG' === $png_label->getContent() &&
