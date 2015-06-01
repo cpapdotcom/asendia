@@ -17,15 +17,39 @@ Requirements
 Installation
 ------------
 
+### Using Composer
+
 ```bash
-$> composer require cpap/asendia
+$> composer require cpapdotcom/asendia
 ```
 
 While in early development, you may be required to be a little more specific:
 
 ```bash
-$> composer require cpap/asendia:^0.0@dev
+$> composer require cpapdotcom/asendia:^0.0@dev
 ```
+
+### PSR-4 or PSR-0 Autoloading
+
+Configure [PSR-4](http://www.php-fig.org/psr/psr-4) to look in
+`src/Cpapdotcom/Asendia` with a namespace prefix of
+`Cpapdotcom\Asendia\`. For PSR-4, the trailing `\` is important.
+
+Configure [PSR-0](http://www.php-fig.org/psr/psr-0) to look in `src/` for
+classes. Depending on PSR-0 implementation, the namespace prefix may be
+set to `Cpapdotcom\Asendia`.
+
+### Standalone
+
+This package ships with a standalone [PSR-4](http://www.php-fig.org/psr/psr-4)
+autoloader courtesy of [Aura](http://auraphp.com/). Require the `autoload.php`
+from the root of this package to make all of the classes in this package
+available to an application.
+
+```php
+require_once '/path/to/cpapdotcom-asendia/autoload.php';
+```
+
 
 Basic Manifest Usage
 --------------------
@@ -34,8 +58,8 @@ The Manifest is a programmatic representation of Asendia's Global eFile XML
 Data Import Specifications. The end result is to create a Simple XML Element
 instance that can be consumed by the Asendia Web API Client.
 
-The `Cpap\Asendia\Manifest` class is a facade to the Manifest primitive types
-and tools to transform both `Manifest\Manifest` instances and property
+The `Cpapdotcom\Asendia\Manifest` class is a facade to the Manifest primitive
+types and tools to transform both `Manifest\Manifest` instances and property
 collections into Simple XML Elements. Its job is to simplify these tasks:
 
 ### Creating a Manifest for an account
@@ -43,7 +67,7 @@ collections into Simple XML Elements. Its job is to simplify these tasks:
 Creates a `Manifest\Manifest` with the current date and time for the timestamp.
 
 ```php
-use Cpap\Asendia\Manifest;
+use Cpapdotcom\Asendia\Manifest;
 
 $manifest = Manifest::createManifestForAccount(
     $accountNumber,
@@ -54,7 +78,7 @@ $manifest = Manifest::createManifestForAccount(
 Creates a `Manifest\Manifest` with the specific date and time for the timestamp.
 
 ```php
-use Cpap\Asendia\Manifest;
+use Cpapdotcom\Asendia\Manifest;
 
 $manifest = Manifest::createManifestForAccount(
     $accountNumber,
@@ -68,7 +92,7 @@ $manifest = Manifest::createManifestForAccount(
 Creates a `Manifest\Package`.
 
 ```php
-use Cpap\Asendia\Manifest;
+use Cpapdotcom\Asendia\Manifest;
 
 $package = Manifest::createPackageWithPckId($pckId);
 ```
@@ -78,7 +102,7 @@ $package = Manifest::createPackageWithPckId($pckId);
 Creates a `Manifest\Item`.
 
 ```php
-use Cpap\Asendia\Manifest;
+use Cpapdotcom\Asendia\Manifest;
 
 $package = Manifest::createItemForPackageWithItemId($itemId);
 ```
@@ -86,7 +110,7 @@ $package = Manifest::createItemForPackageWithItemId($itemId);
 ### Creating a Simple XML Element from a Manifest
 
 ```php
-use Cpap\Asendia\Manifest;
+use Cpapdotcom\Asendia\Manifest;
 
 $element = Manifest::createXmlFromManifest($manifest);
 ```
@@ -94,7 +118,7 @@ $element = Manifest::createXmlFromManifest($manifest);
 ### Creating a Simple XML Element from a collection of properties
 
 ```php
-use Cpap\Asendia\Manifest;
+use Cpapdotcom\Asendia\Manifest;
 
 $element = Manifest::createXmlFromProperties($properties);
 ```
@@ -103,7 +127,7 @@ $element = Manifest::createXmlFromProperties($properties);
 ### Example
 
 ```php
-use Cpap\Asendia\Manifest;
+use Cpapdotcom\Asendia\Manifest;
 
 $manifest = Manifest::createManifestForAccount(
     '123456789012345',
@@ -194,7 +218,7 @@ Create an Asendia Web API Client from login and password using the production
 WSDL URI.
 
 ```php
-use Cpap\Asendia\WebApiClient\Adapter\Soap\SoapAsendiaWebApiClient;
+use Cpapdotcom\Asendia\WebApiClient\Adapter\Soap\SoapAsendiaWebApiClient;
 
 $asendia = SoapAsendiaWebApiClient::fromCredentialsAndProductionWsdl(
     $login,
@@ -206,7 +230,7 @@ Create an Asendia Web API Client from login and password using the testing WSDL
 URI.
 
 ```php
-use Cpap\Asendia\WebApiClient\Adapter\Soap\SoapAsendiaWebApiClient;
+use Cpapdotcom\Asendia\WebApiClient\Adapter\Soap\SoapAsendiaWebApiClient;
 
 $asendia = SoapAsendiaWebApiClient::fromCredentialsAndTestingWsdl(
     $login,
@@ -218,7 +242,7 @@ Create an Asendia Web API Client from login and password using the WSDL URI
 specified.
 
 ```php
-use Cpap\Asendia\WebApiClient\Adapter\Soap\SoapAsendiaWebApiClient;
+use Cpapdotcom\Asendia\WebApiClient\Adapter\Soap\SoapAsendiaWebApiClient;
 
 $asendia = SoapAsendiaWebApiClient::fromCredentialsAndWsdl(
     $login,
@@ -231,7 +255,7 @@ Example of how one might create an Asendia Web API Client from login and
 password using the WSDL URI for the current environment.
 
 ```php
-use Cpap\Asendia\WebApiClient\Adapter\Soap\SoapAsendiaWebApiClient;
+use Cpapdotcom\Asendia\WebApiClient\Adapter\Soap\SoapAsendiaWebApiClient;
 
 $asendia = SoapAsendiaWebApiClient::fromCredentialsAndWsdl(
     $login,
@@ -308,6 +332,7 @@ echo $pngLabel->getEncodedContent()."\n"; // the base64 encoded content
 echo $pngLabel->getContent()."\n"; // the base64 decoded content (binary/raw)
 $pngLabel->writeContentToFile('/path/to/whatever.png'); // writes content to file
 ```
+
 
 License
 -------
