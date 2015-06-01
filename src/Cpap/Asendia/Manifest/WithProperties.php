@@ -99,7 +99,7 @@ trait WithProperties
      * @param string $name
      * @param array $arguments
      *
-     * @return WithProperties
+     * @return static
      */
     public function __call($name, $arguments)
     {
