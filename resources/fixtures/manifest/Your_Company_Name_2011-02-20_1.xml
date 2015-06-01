@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no" ?>
+<BwwManifest>
+  <Header>
+    <CompanyName>Your Company Name</CompanyName>
+    <AccountNumber>123456789012345</AccountNumber>
+    <FileTimeStamp>March 1, 2011 01:12:00 PM</FileTimeStamp>
+    <TimeZone>EST</TimeZone>
+  </Header>
+  <Package>
+    <PckId>BW00709000019</PckId>
+    <OrderId>89105221002001100217</OrderId>
+    <LastName>Doe</LastName>
+    <FirstName>Jane</FirstName>
+    <MiddleInitial>S</MiddleInitial>
+    <AddressLine1>17 Robilliard Way</AddressLine1>
+    <AddressLine2/>
+    <AddressLine3/>
+    <City>Sebastopol</City>
+    <Province>Bonshaw</Province>
+    <PostalCode>3356</PostalCode>
+    <CountryCode>AU</CountryCode>
+    <Phone/>
+    <Email/>
+    <PckWeight>3.58</PckWeight>
+    <PckType>M</PckType>
+    <ServiceType>PAR</ServiceType>
+    <PckDescription>Clothing</PckDescription>
+    <ShippingCost>20.21</ShippingCost>
+    <DutyTaxHandling>10.83</DutyTaxHandling>
+    <CustomsBarCode>LM473124829US</CustomsBarCode>
+    <Item>
+      <PckId>BW00709000019</PckId>
+      <ItemId>2929840</ItemId>
+      <ItemDescription>Shirt</ItemDescription>
+      <CustomsDescription>Shirt</CustomsDescription>
+      <Quantity>1</Quantity>
+      <UnitPrice>10.00</UnitPrice>
+      <CountryOfOrigin>US</CountryOfOrigin>
+      <HTSNumber>123456789</HTSNumber>
+    </Item>
+    <Item>
+      <PckId>BW00709000019</PckId>
+      <ItemId>2929841</ItemId>
+      <ItemDescription>Pants</ItemDescription>
+      <CustomsDescription>Pants</CustomsDescription>
+      <Quantity>2</Quantity>
+      <UnitPrice>15.00</UnitPrice>
+      <CountryOfOrigin>US</CountryOfOrigin>
+      <HTSNumber>987654321</HTSNumber>
+    </Item>
+  </Package>
+  <Package>
+    <PckId>BW00709012345</PckId>
+    <OrderId>89105221002001100217</OrderId>
+    <LastName>Smith</LastName>
+    <FirstName>John</FirstName>
+    <MiddleInitial>Q</MiddleInitial>
+    <AddressLine1>28A CLIFTON ST</AddressLine1>
+    <AddressLine2>Apartment 203</AddressLine2>
+    <AddressLine3 />
+    <City>CAMPBELLTOWN</City>
+    <Province>SYDNEY</Province>
+    <PostalCode>2560</PostalCode>
+    <CountryCode>AU</CountryCode>
+    <Phone>jsmith@gmail.com</Phone>
+    <Email />
+    <PckWeight>1.25</PckWeight>
+    <PckType>S</PckType>
+    <ServiceType>PAR</ServiceType>
+    <PckDescription>Clothing</PckDescription>
+    <CustomsBarCode>LM473124829US</CustomsBarCode>
+    <Item>
+      <PckId>BW00709012345</PckId>
+      <ItemId>123456789</ItemId>
+      <ItemDescription>Pants</ItemDescription>
+      <CustomsDescription>100% cotton</CustomsDescription>
+      <Quantity>1</Quantity>
+      <UnitPrice>25.00</UnitPrice>
+      <CountryOfOrigin>US</CountryOfOrigin>
+      <HTSNumber/>
+    </Item>
+  </Package>
+</BwwManifest>

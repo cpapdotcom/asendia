@@ -1,0 +1,24 @@
+{
+    "name": "cpap/asendia",
+    "description": "Client for interacting with Asendia",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Beau Simensen",
+            "email": "beau@dflydev.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Cpap\\Asendia\\": "src/Cpap/Asendia"
+        }
+    },
+    "require": {
+        "php": ">=5.4"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.0.x-dev"
+        }
+    }
+}
