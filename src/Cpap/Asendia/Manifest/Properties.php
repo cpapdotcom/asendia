@@ -9,7 +9,7 @@ interface Properties
      *
      * @return string[]
      */
-    function getPropertyNames();
+    public function getPropertyNames();
 
     /**
      * An associate array of all properties as key value pairs.
@@ -24,5 +24,5 @@ interface Properties
      *
      * @return array
      */
-    function getProperties();
+    public function getProperties();
 }

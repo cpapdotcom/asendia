@@ -14,7 +14,7 @@ interface AsendiaWebApiClient
     /**
      * @return CreatedShipment
      */
-    function createShipment();
+    public function createShipment();
 
     /**
      * @param string $shipmentNumber
@@ -23,33 +23,33 @@ interface AsendiaWebApiClient
      *
      * @return AddedShipmentPackages
      */
-    function addPackagesToShipment($shipmentNumber, $manifest, $labelType);
+    public function addPackagesToShipment($shipmentNumber, $manifest, $labelType);
 
     /**
      * @param string $shipmentNumber
      *
      * @return ClosedShipment
      */
-    function closeShipment($shipmentNumber);
+    public function closeShipment($shipmentNumber);
 
     /**
      * @param string $filename
      *
      * @return PdfLabel
      */
-    function retrieveLabelAsPdf($filename);
+    public function retrieveLabelAsPdf($filename);
 
     /**
      * @param string $filename
      *
      * @return JpegLabel
      */
-    function retrieveLabelAsJpeg($filename);
+    public function retrieveLabelAsJpeg($filename);
 
     /**
      * @param string $filename
      *
      * @return PngLabel
      */
-    function retrieveLabelAsPng($filename);
+    public function retrieveLabelAsPng($filename);
 }
