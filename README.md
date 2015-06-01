@@ -3,6 +3,10 @@ Asendia Integration
 
 Provides integration with Asendia.
 
+[![Build Status](https://travis-ci.org/cpapdotcom/asendia.svg?branch=master)](https://travis-ci.org/cpapdotcom/asendia)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/cpapdotcom/asendia/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/cpapdotcom/asendia/?branch=master)
+[![Code Climate](https://codeclimate.com/github/cpapdotcom/asendia/badges/gpa.svg)](https://codeclimate.com/github/cpapdotcom/asendia)
+
 
 Requirements
 ------------
