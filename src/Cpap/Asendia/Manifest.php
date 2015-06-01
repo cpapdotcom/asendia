@@ -12,7 +12,7 @@ class Manifest
      *
      * @return Manifest\Manifest
      */
-    static public function createManifestForAccount($accountNumber, $companyName, DateTime $timeStamp = null)
+    public static function createManifestForAccount($accountNumber, $companyName, DateTime $timeStamp = null)
     {
         return Manifest\Manifest::create($accountNumber, $companyName, $timeStamp);
     }
@@ -22,7 +22,7 @@ class Manifest
      *
      * @return Manifest\Package
      */
-    static public function createPackageWithPckId($pckId)
+    public static function createPackageWithPckId($pckId)
     {
         return Manifest\Package::createWithPckId($pckId);
     }
