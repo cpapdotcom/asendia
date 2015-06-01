@@ -107,9 +107,14 @@ function test_retrieve_label_as_pdf()
 
     $pdf_label = $asendia_web_api_client->retrieveLabelAsPdf($filename);
 
+    $tempnam = tempnam(sys_get_temp_dir(), 'asendia_pdf_label');
+    $pdf_label->writeContentToFile($tempnam);
+
     return
         $filename === $pdf_label->getLabelFile() &&
-        'Test PDF' === $pdf_label->getContent()
+        'Test PDF' === $pdf_label->getContent() &&
+        'Test PDF' === file_get_contents($tempnam) &&
+        unlink($tempnam)
     ;
 }
 
@@ -129,9 +134,14 @@ function test_retrieve_label_as_jpeg()
 
     $jpeg_label = $asendia_web_api_client->retrieveLabelAsJpeg($filename);
 
+    $tempnam = tempnam(sys_get_temp_dir(), 'asendia_jpeg_label');
+    $jpeg_label->writeContentToFile($tempnam);
+
     return
         $filename === $jpeg_label->getLabelFile() &&
-        'Test JPEG' === $jpeg_label->getContent()
+        'Test JPEG' === $jpeg_label->getContent() &&
+        'Test JPEG' === file_get_contents($tempnam) &&
+        unlink($tempnam)
     ;
 }
 
@@ -151,9 +161,16 @@ function test_retrieve_label_as_png()
 
     $png_label = $asendia_web_api_client->retrieveLabelAsPng($filename);
 
+    $tempnam = tempnam(sys_get_temp_dir(), 'asendia_pngf_label');
+    $png_label->writeContentToFile($tempnam);
+
+    echo " ::: $tempnam\n";
+
     return
         $filename === $png_label->getLabelFile() &&
-        'Test PNG' === $png_label->getContent()
+        'Test PNG' === $png_label->getContent() &&
+        'Test PNG' === file_get_contents($tempnam) &&
+        unlink($tempnam)
     ;
 }
 
