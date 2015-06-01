@@ -136,7 +136,7 @@ class SoapAsendiaWebApiClient implements AsendiaWebApiClient
      */
     public function addPackagesToShipment($shipmentNumber, $manifest, $labelType)
     {
-        $xml = static::resolveManifestToXml($manifest);
+        $xml = self::resolveManifestToXml($manifest);
 
         $response = $this->asendiaWsdlClient->AddPackagesToShipment2([
             'login' => $this->login,
