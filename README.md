@@ -27,9 +27,166 @@ While in early development, you may be required to be a little more specific:
 $> composer require cpap/asendia:^0.0@dev
 ```
 
+Basic Manifest Usage
+--------------------
 
-Basic Usage
------------
+The Manifest is a programmatic representation of Asendia's Global eFile XML
+Data Import Specifications. The end result is to create a Simple XML Element
+instance that can be consumed by the Asendia Web API Client.
+
+The `Cpap\Asendia\Manifest` class is a facade to the Manifest primitive types
+and tools to transform both `Manifest\Manifest` instances and property
+collections into Simple XML Elements. Its job is to simplify these tasks:
+
+### Creating a Manifest for an account
+
+Creates a `Manifest\Manifest` with the current date and time for the timestamp.
+
+```php
+use Cpap\Asendia\Manifest;
+
+$manifest = Manifest::createManifestForAccount(
+    $accountNumber,
+    $companyName
+);
+```
+
+Creates a `Manifest\Manifest` with the specific date and time for the timestamp.
+
+```php
+use Cpap\Asendia\Manifest;
+
+$manifest = Manifest::createManifestForAccount(
+    $accountNumber,
+    $companyName,
+    new DateTime('yesterday')
+);
+```
+
+### Creating a Package
+
+Creates a `Manifest\Package`.
+
+```php
+use Cpap\Asendia\Manifest;
+
+$package = Manifest::createPackageWithPckId($pckId);
+```
+
+### Creating an Item
+
+Creates a `Manifest\Item`.
+
+```php
+use Cpap\Asendia\Manifest;
+
+$package = Manifest::createItemForPackageWithItemId($itemId);
+```
+
+### Creating a Simple XML Element from a Manifest
+
+```php
+use Cpap\Asendia\Manifest;
+
+$element = Manifest::createXmlFromManifest($manifest);
+```
+
+### Creating a Simple XML Element from a collection of properties
+
+```php
+use Cpap\Asendia\Manifest;
+
+$element = Manifest::createXmlFromProperties($properties);
+```
+
+
+### Example
+
+```php
+use Cpap\Asendia\Manifest;
+
+$manifest = Manifest::createManifestForAccount(
+    '123456789012345',
+    'Your Company Name'
+)
+    ->withPackage(Manifest::createPackageWithPckId('BW00709000019')
+        ->withOrderId('89105221002001100217')
+        ->withLastName('Doe')
+        ->withFirstName('Jane')
+        ->withMiddleInitial('S')
+        ->withAddressLines([
+            '17 Robilliard Way',
+        ])
+        ->withCity('Sebastopol')
+        ->withProvince('Bonshaw')
+        ->withPostalCode('3356')
+        ->withCountryCode('AU')
+        //->withPhone()
+        //->withEmail()
+        ->withPckWeight('3.58')
+        ->withPckType('M')
+        ->withServiceType('PAR')
+        ->withPckDescription('Clothing')
+        ->withShippingCost('20.21')
+        ->withDutyTaxHandling('10.83')
+        ->withCustomsBarCode('LM473124829US')
+        ->withItem(Manifest::createItemForPackageWithItemId('2929840')
+            ->withItemDescription('Shirt')
+            ->withCustomsDescription('Shirt')
+            ->withQuantity(1)
+            ->withUnitPrice('10.00')
+            ->withCountryOfOrigin('US')
+            ->withHTSNumber('123456789')
+        )
+        ->withItem(Manifest::createItemForPackageWithItemId('2929841')
+            ->withItemDescription('Pants')
+            ->withCustomsDescription('Pants')
+            ->withQuantity(2)
+            ->withUnitPrice('15.00')
+            ->withCountryOfOrigin('US')
+            ->withHTSNumber('987654321')
+        )
+    )
+    ->withPackage(Manifest::createPackageWithPckId('BW00709012345')
+        ->withOrderId('89105221002001100217')
+        ->withLastName('Smith')
+        ->withFirstName('John')
+        ->withMiddleInitial('Q')
+        ->withAddressLines([
+            '28A CLIFTON ST',
+            'Apartment 203',
+        ])
+        ->withCity('CAMPBELLTOWN')
+        ->withProvince('SYDNEY')
+        ->withPostalCode('2560')
+        ->withCountryCode('AU')
+        ->withPhone('jsmith@gmail.com')
+        //->withEmail()
+        ->withPckWeight('1.25')
+        ->withPckType('S')
+        ->withServiceType('PAR')
+        ->withPckDescription('Clothing')
+        //->withShippingCost()
+        //->withDutyTaxHandling()
+        ->withCustomsBarCode('LM473124829US')
+        ->withItem(Manifest::createItemForPackageWithItemId('123456789')
+            ->withItemDescription('Pants')
+            ->withCustomsDescription('100% cotton')
+            ->withQuantity(1)
+            ->withUnitPrice('25.00')
+            ->withCountryOfOrigin('US')
+            //->withHTSNumber()
+        )
+    )
+;
+
+//
+$manifestAsXml = Manifest::createXmlFromManifest($manifest);
+```
+
+
+Basic Asendia Web API Client Usage
+----------------------------------
 
 ### Creating an Assendia Web API Client
 
@@ -91,7 +248,7 @@ $asendia = SoapAsendiaWebApiClient::fromCredentialsAndWsdl(
 $createdShipment = $asendia->createShipment();
 
 echo $createdShipment->getStatus()."\n"; // should be 'open'
-echo $createdShipment->getShipment()."\n"; // the number for the newly created shipment.
+echo $createdShipment->getShipment()."\n"; // the number for the newly created shipment
 ```
 
 ### Add packages to shipments
