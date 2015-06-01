@@ -2,6 +2,29 @@
 
 namespace Cpap\Asendia\Manifest;
 
+/**
+ * @method static withPckId
+ * @method static withOrderId
+ * @method static withLastName
+ * @method static withFirstName
+ * @method static withMiddleInitial
+ * @method static withAddressLine1
+ * @method static withAddressLine2
+ * @method static withAddressLine3
+ * @method static withCity
+ * @method static withProvince
+ * @method static withPostalCode
+ * @method static withCountryCode
+ * @method static withPhone
+ * @method static withEmail
+ * @method static withPckWeight
+ * @method static withPckType
+ * @method static withServiceType
+ * @method static withPckDescription
+ * @method static withShippingCost
+ * @method static withDutyTaxHandling
+ * @method static withCustomsBarCode
+ */
 class Package implements Properties
 {
     use WithProperties;

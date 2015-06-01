@@ -4,6 +4,9 @@ namespace Cpap\Asendia\Manifest;
 
 use DateTime;
 
+/**
+ * @method static withHeader(Header $header)
+ */
 class Manifest implements Properties
 {
     use WithProperties;

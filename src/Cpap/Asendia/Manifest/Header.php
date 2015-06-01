@@ -4,6 +4,12 @@ namespace Cpap\Asendia\Manifest;
 
 use DateTime;
 
+/**
+ * @method Header withCompanyName(string $companyName)
+ * @method Header withAccountNumber(string $accountNumber)
+ * @method Header withFileTimeStamp(string $timeStamp)
+ * @method Header withTimeZone(string $timeZone)
+ */
 class Header implements Properties
 {
     use WithProperties;

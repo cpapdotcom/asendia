@@ -2,6 +2,16 @@
 
 namespace Cpap\Asendia\Manifest;
 
+/**
+ * @method withPckId
+ * @method withItemId
+ * @method withItemDescription
+ * @method withCustomsDescription
+ * @method withQuantity
+ * @method withUnitPrice
+ * @method withCountryOfOrigin
+ * @method withHTSNumber
+ */
 class Item implements Properties
 {
     use WithProperties;
