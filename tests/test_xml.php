@@ -1,6 +1,6 @@
 <?php
 
-use Cpap\Asendia\Manifest;
+use Cpapdotcom\Asendia\Manifest;
 
 require_once __DIR__.'/bootstrap.php';
 

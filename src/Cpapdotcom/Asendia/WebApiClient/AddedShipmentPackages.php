@@ -1,6 +1,6 @@
 <?php
 
-namespace Cpap\Asendia\WebApiClient;
+namespace Cpapdotcom\Asendia\WebApiClient;
 
 class AddedShipmentPackages
 {

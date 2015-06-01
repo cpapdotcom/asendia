@@ -1,6 +1,6 @@
 <?php
 
-namespace Cpap\Asendia\Manifest;
+namespace Cpapdotcom\Asendia\Manifest;
 
 use SimpleXMLElement;
 

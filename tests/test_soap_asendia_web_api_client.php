@@ -2,8 +2,8 @@
 
 require_once __DIR__.'/bootstrap.php';
 
-use Cpap\Asendia\Manifest\Xml;
-use Cpap\Asendia\WebApiClient\AsendiaWebApiClient;
+use Cpapdotcom\Asendia\Manifest\Xml;
+use Cpapdotcom\Asendia\WebApiClient\AsendiaWebApiClient;
 
 it('creates shipments', test_create_shipment());
 it('adds packages to shipments', test_add_packages_to_shipment());

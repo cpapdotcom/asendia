@@ -1,8 +1,8 @@
 <?php
 
-namespace Cpap\Asendia\WebApiClient;
+namespace Cpapdotcom\Asendia\WebApiClient;
 
-class ClosedShipment
+class CreatedShipment
 {
     /**
      * @var string

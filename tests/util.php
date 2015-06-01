@@ -1,6 +1,6 @@
 <?php
 
-use Cpap\Asendia\WebApiClient\Adapter\Soap\SoapAsendiaWebApiClient;
+use Cpapdotcom\Asendia\WebApiClient\Adapter\Soap\SoapAsendiaWebApiClient;
 
 function get_fixture_path($path)
 {

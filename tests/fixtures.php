@@ -1,6 +1,6 @@
 <?php
 
-use Cpap\Asendia\Manifest;
+use Cpapdotcom\Asendia\Manifest;
 
 /**
  * @return Manifest\Manifest

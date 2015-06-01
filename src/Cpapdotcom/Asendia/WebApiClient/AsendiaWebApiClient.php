@@ -1,8 +1,8 @@
 <?php
 
-namespace Cpap\Asendia\WebApiClient;
+namespace Cpapdotcom\Asendia\WebApiClient;
 
-use Cpap\Asendia\Manifest\Manifest;
+use Cpapdotcom\Asendia\Manifest\Manifest;
 
 interface AsendiaWebApiClient
 {

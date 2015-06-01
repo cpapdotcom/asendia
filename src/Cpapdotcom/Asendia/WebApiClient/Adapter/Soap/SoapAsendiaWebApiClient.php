@@ -1,20 +1,20 @@
 <?php
 
-namespace Cpap\Asendia\WebApiClient\Adapter\Soap;
+namespace Cpapdotcom\Asendia\WebApiClient\Adapter\Soap;
 
-use Cpap\Asendia\Manifest\Manifest;
-use Cpap\Asendia\Manifest\Xml;
-use Cpap\Asendia\WebApiClient\AddedShipmentPackages;
-use Cpap\Asendia\WebApiClient\AsendiaWebApiClient;
-use Cpap\Asendia\WebApiClient\ClosedShipment;
-use Cpap\Asendia\WebApiClient\CreatedShipment;
-use Cpap\Asendia\WebApiClient\Error;
-use Cpap\Asendia\WebApiClient\JpegLabel;
-use Cpap\Asendia\WebApiClient\LabelNotFound;
-use Cpap\Asendia\WebApiClient\LoginFailure;
-use Cpap\Asendia\WebApiClient\Package;
-use Cpap\Asendia\WebApiClient\PdfLabel;
-use Cpap\Asendia\WebApiClient\PngLabel;
+use Cpapdotcom\Asendia\Manifest\Manifest;
+use Cpapdotcom\Asendia\Manifest\Xml;
+use Cpapdotcom\Asendia\WebApiClient\AddedShipmentPackages;
+use Cpapdotcom\Asendia\WebApiClient\AsendiaWebApiClient;
+use Cpapdotcom\Asendia\WebApiClient\ClosedShipment;
+use Cpapdotcom\Asendia\WebApiClient\CreatedShipment;
+use Cpapdotcom\Asendia\WebApiClient\Error;
+use Cpapdotcom\Asendia\WebApiClient\JpegLabel;
+use Cpapdotcom\Asendia\WebApiClient\LabelNotFound;
+use Cpapdotcom\Asendia\WebApiClient\LoginFailure;
+use Cpapdotcom\Asendia\WebApiClient\Package;
+use Cpapdotcom\Asendia\WebApiClient\PdfLabel;
+use Cpapdotcom\Asendia\WebApiClient\PngLabel;
 use InvalidArgumentException;
 use SimpleXMLElement;
 use SoapClient;
@@ -264,7 +264,7 @@ class SoapAsendiaWebApiClient implements AsendiaWebApiClient
         } else {
             $message = sprintf(
                 'Manifest must be an array of properties, and instance of %s, or an XML string.',
-                'Cpap\Asendia\Manifest\Manifest'
+                'Cpapdotcom\Asendia\Manifest\Manifest'
             );
 
             throw new InvalidArgumentException($message);

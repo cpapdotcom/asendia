@@ -1,6 +1,6 @@
 <?php
 
-namespace Cpap\Asendia;
+namespace Cpapdotcom\Asendia;
 
 use DateTime;
 

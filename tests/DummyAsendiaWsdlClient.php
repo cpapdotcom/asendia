@@ -1,6 +1,6 @@
 <?php
 
-use Cpap\Asendia\WebApiClient\Adapter\Soap\AsendiaWsdlClient;
+use Cpapdotcom\Asendia\WebApiClient\Adapter\Soap\AsendiaWsdlClient;
 
 class DummyAsendiaWsdlClient implements AsendiaWsdlClient
 {

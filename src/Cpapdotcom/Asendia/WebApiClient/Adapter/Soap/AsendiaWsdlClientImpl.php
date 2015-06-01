@@ -1,6 +1,6 @@
 <?php
 
-namespace Cpap\Asendia\WebApiClient\Adapter\Soap;
+namespace Cpapdotcom\Asendia\WebApiClient\Adapter\Soap;
 
 use SoapClient;
 
