@@ -36,7 +36,7 @@ interface AsendiaWebApiClient
      * @param int $labelType
      * @param string $filename
      *
-     * @return PdfLabel
+     * @return Label
      */
     public function retrieveLabel($labelType, $filename);
 

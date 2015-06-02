@@ -199,16 +199,12 @@ class SoapAsendiaWebApiClient implements AsendiaWebApiClient
         switch ($labelType) {
             case static::LABEL_TYPE_PDF:
                 return $this->retrieveLabelAsPdf($filename);
-                break;
             case static::LABEL_TYPE_PNG:
                 return $this->retrieveLabelAsPng($filename);
-                break;
             case static::LABEL_TYPE_JPEG:
                 return $this->retrieveLabelAsJpeg($filename);
-                break;
             case static::LABEL_TYPE_NONE:
                 throw new LabelNotFound(sprintf('Label for filename "%s" has no label.',  $filename,  $labelType));
-                break;
             default:
                 throw new LabelNotFound(sprintf(
                     'Label for filename "%s" with unknown type "%s" was not found.',
