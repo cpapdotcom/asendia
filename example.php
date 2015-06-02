@@ -45,6 +45,15 @@ if (3 === count($argv)) {
         case '3':
             $labelType = AsendiaWebApiClient::LABEL_TYPE_JPEG;
             break;
+        default:
+            printf("Example application for exercising the Asendia Web API Client.\n");
+            printf("\n");
+            printf("Unknown label type specified: %s\n", $labelType);
+            printf("Must be one of: none, pdf, png, jpeg (default: pdf)\n");
+            printf("\n");
+            printf("Usage: %s <login> <password> [<labelType>]\n", $argv[0]);
+            printf("\n");
+            die;
     }
 }
 
@@ -67,7 +76,7 @@ try {
     printf(" * status:          %s\n", $createdShipment->getStatus());
     printf("\n");
 } catch (Error $e) {
-    printf(" * ERROR: %s\n\n".$e->getMessage());
+    printf(" * ERROR: %s\n\n", $e->getMessage());
     if ($soapClient) {
         print_r($soapClient->__getLastRequestHeaders());
         print_r($soapClient->__getLastRequest());
@@ -106,28 +115,30 @@ try {
 
 
 
-printf("Retrieving labels.\n");
+if (AsendiaWebApiClient::LABEL_TYPE_NONE !== $labelType) {
+    printf("Retrieving labels.\n");
 
-foreach ($addedShipmentPackages->getPackages() as $package) {
-    try {
-        printf(" * Retrieving PDF label for %s (%s)\n", $package->getPckId(), $package->getLabelFile());
+    foreach ($addedShipmentPackages->getPackages() as $package) {
+        try {
+            printf(" * Retrieving PDF label for %s (%s)\n", $package->getPckId(), $package->getLabelFile());
 
-        $label = $asendia->retrieveLabel($labelType, $package->getLabelFile());
+            $label = $asendia->retrieveLabel($labelType, $package->getLabelFile());
 
-        printf("   * Retrieved label file: %s\n", $label->getLabelFile());
-        printf("   * Retrieved label size: %d bytes\n", strlen($label->getContent()));
+            printf("   * Retrieved label file: %s\n", $label->getLabelFile());
+            printf("   * Retrieved label size: %d bytes\n", strlen($label->getContent()));
 
-        $temporary = get_temp_file_for_label($label);
-        $label->writeContentToFile($temporary);
-        printf("   * Retrieved label file: %s\n", $temporary);
-        printf("\n");
-    } catch (Error $e) {
-        printf(" * ERROR: %s\n\n", $e->getMessage());
-        if ($soapClient) {
-            print_r($soapClient->__getLastRequestHeaders());
-            print_r($soapClient->__getLastRequest());
+            $temporary = get_temp_file_for_label($label);
+            $label->writeContentToFile($temporary);
+            printf("   * Retrieved label file: %s\n", $temporary);
+            printf("\n");
+        } catch (Error $e) {
+            printf(" * ERROR: %s\n\n", $e->getMessage());
+            if ($soapClient) {
+                print_r($soapClient->__getLastRequestHeaders());
+                print_r($soapClient->__getLastRequest());
+            }
+            throw $e;
         }
-        throw $e;
     }
 }
 
