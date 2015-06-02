@@ -12,6 +12,7 @@ tools:
 filter:
     excluded_paths:
         - tests/*
+        - example.php
 checks:
     php:
         code_rating: true
