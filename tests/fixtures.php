@@ -2,17 +2,27 @@
 
 use Cpapdotcom\Asendia\Manifest;
 
+function randomized_pckid(DateTime $now, $id)
+{
+    $nowFormatted = $now->format('YmdHis');
+    return sprintf("CPAP%s%02d", $nowFormatted, $id);
+}
+
 /**
  * @return Manifest\Manifest
  */
-function get_manifest_from_facade()
+function get_manifest_from_facade($randomize = false)
 {
     $accountNumber = '123456789012345';
     $companyName = 'Your Company Name';
     $timeStamp = new DateTime('2011-03-01 01:12:00PM EST');
 
+    $now = new DateTime('now');
+    $pckIdOne = $randomize ? randomized_pckid($now, 1) : 'BW00709000019';
+    $pckIdTwo = $randomize ? randomized_pckid($now, 2) : 'BW00709012345';
+
     return Manifest::createManifestForAccount($accountNumber, $companyName, $timeStamp)
-        ->withPackage(Manifest::createPackageWithPckId('BW00709000019')
+        ->withPackage(Manifest::createPackageWithPckId($pckIdOne)
             ->withOrderId('89105221002001100217')
             ->withLastName('Doe')
             ->withFirstName('Jane')
@@ -50,7 +60,7 @@ function get_manifest_from_facade()
                 ->withHTSNumber('987654321')
             )
         )
-        ->withPackage(Manifest::createPackageWithPckId('BW00709012345')
+        ->withPackage(Manifest::createPackageWithPckId($pckIdTwo)
             ->withOrderId('89105221002001100217')
             ->withLastName('Smith')
             ->withFirstName('John')
