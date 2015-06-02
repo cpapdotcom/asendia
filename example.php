@@ -50,7 +50,8 @@ if (3 === count($argv)) {
 
 // This is the complex way to get a testing Asendia client.
 // This method allows us to capture the original SoapClient
-// instand for debugging.
+// instance for debugging. (we will check the last request
+// made by SoapClient any time we see an exception!)
 $soapClient = new SoapClient(SoapAsendiaWebApiClient::TESTING_WSDL, ['trace' => 1]);
 $wsdlClient = new AsendiaWsdlClientImpl($soapClient);
 $asendia = new SoapAsendiaWebApiClient($wsdlClient, $login, $password);
@@ -149,10 +150,13 @@ try {
     throw $e;
 }
 
+
+
 function get_temp_dir_for_labels()
 {
     return __DIR__.'/temp';
 }
+
 function ensure_temp_dir_for_labels_exists()
 {
     $temp_dir = get_temp_dir_for_labels();
