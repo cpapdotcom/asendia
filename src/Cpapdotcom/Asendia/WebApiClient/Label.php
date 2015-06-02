@@ -12,16 +12,16 @@ abstract class Label
     /**
      * @var string
      */
-    private $encodedContent;
+    private $content;
 
     /**
      * @param string $labelFile
-     * @param string $encodedContent
+     * @param string $content
      */
-    public function __construct($labelFile, $encodedContent)
+    public function __construct($labelFile, $content)
     {
         $this->labelFile = $labelFile;
-        $this->encodedContent = $encodedContent;
+        $this->content = $content;
     }
 
     /**
@@ -35,17 +35,9 @@ abstract class Label
     /**
      * @return string
      */
-    public function getEncodedContent()
-    {
-        return $this->encodedContent;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getContent()
     {
-        return base64_decode($this->encodedContent);
+        return $this->content;
     }
 
     /**
@@ -53,6 +45,6 @@ abstract class Label
      */
     public function writeContentToFile($filename)
     {
-        file_put_contents($filename, base64_decode($this->encodedContent));
+        file_put_contents($filename, $this->content);
     }
 }

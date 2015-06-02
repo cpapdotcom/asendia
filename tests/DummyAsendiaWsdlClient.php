@@ -34,22 +34,22 @@ class DummyAsendiaWsdlClient implements AsendiaWsdlClient
         return $instance;
     }
 
-    public function withAddPackagesToShipment2(stdClass $response, $shipmentNumber, $xmlstring, $labelType)
+    public function withAddPackagesToShipment2(stdClass $response, $shipmentnumber, $xmlstring, $labelType)
     {
         $instance = clone($this);
         $instance->addPackagesToShipment2Response = $response;
-        $instance->addPackagesToShipment2ShipmentNumber = $shipmentNumber;
+        $instance->addPackagesToShipment2ShipmentNumber = $shipmentnumber;
         $instance->addPackagesToShipment2Xmlstring = $xmlstring;
         $instance->addPackagesToShipment2LabelType = $labelType;
 
         return $instance;
     }
 
-    public function withCloseShipment2(stdClass $response, $shipmentNumber)
+    public function withCloseShipment2(stdClass $response, $shipmentnumber)
     {
         $instance = clone($this);
         $instance->closeShipment2Response = $response;
-        $instance->closeShipment2ShipmentNumber = $shipmentNumber;
+        $instance->closeShipment2ShipmentNumber = $shipmentnumber;
 
         return $instance;
     }
@@ -101,7 +101,7 @@ class DummyAsendiaWsdlClient implements AsendiaWsdlClient
         $this->guardArgument(
             $this->addPackagesToShipment2ShipmentNumber,
             $arguments,
-            'shipmentNumber'
+            'shipmentnumber'
         );
 
         $this->guardArgument(
@@ -120,7 +120,7 @@ class DummyAsendiaWsdlClient implements AsendiaWsdlClient
         $this->guardArgument(
             $this->closeShipment2ShipmentNumber,
             $arguments,
-            'shipmentNumber'
+            'shipmentnumber'
         );
 
         return $this->closeShipment2Response;

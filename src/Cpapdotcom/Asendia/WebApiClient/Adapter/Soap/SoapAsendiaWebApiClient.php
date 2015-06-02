@@ -18,6 +18,7 @@ use Cpapdotcom\Asendia\WebApiClient\PngLabel;
 use InvalidArgumentException;
 use SimpleXMLElement;
 use SoapClient;
+use SoapVar;
 
 class SoapAsendiaWebApiClient implements AsendiaWebApiClient
 {
@@ -134,14 +135,14 @@ class SoapAsendiaWebApiClient implements AsendiaWebApiClient
     /**
      * {@inheritdoc}
      */
-    public function addPackagesToShipment($shipmentNumber, $manifest, $labelType)
+    public function addPackagesToShipment($shipmentnumber, $manifest, $labelType)
     {
         $xml = self::resolveManifestToXml($manifest);
 
         $response = $this->asendiaWsdlClient->AddPackagesToShipment2([
             'login' => $this->login,
             'password' => $this->password,
-            'shipmentNumber' => $shipmentNumber,
+            'shipmentnumber' => $shipmentnumber,
             'xmlstring' => $xml,
             'labelType' => $labelType,
         ]);
@@ -174,10 +175,10 @@ class SoapAsendiaWebApiClient implements AsendiaWebApiClient
         $response = $this->asendiaWsdlClient->CloseShipment2([
             'login' => $this->login,
             'password' => $this->password,
-            'shipmentNumber' => $shipmentNumber,
+            'shipmentnumber' => $shipmentNumber,
         ]);
 
-        $responseXmlElement = new SimpleXMLElement($response->CloseShipment2);
+        $responseXmlElement = new SimpleXMLElement($response->CloseShipment2Result);
 
         $this->processPotentialErrorResponses($responseXmlElement);
 
@@ -188,6 +189,33 @@ class SoapAsendiaWebApiClient implements AsendiaWebApiClient
         $status = (string) $shipmentElement['status'];
 
         return new ClosedShipment($shipment, $status);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function retrieveLabel($labelType, $filename)
+    {
+        switch ($labelType) {
+            case static::LABEL_TYPE_PDF:
+                return $this->retrieveLabelAsPdf($filename);
+                break;
+            case static::LABEL_TYPE_PNG:
+                return $this->retrieveLabelAsPng($filename);
+                break;
+            case static::LABEL_TYPE_JPEG:
+                return $this->retrieveLabelAsJpeg($filename);
+                break;
+            case static::LABEL_TYPE_NONE:
+                throw new LabelNotFound(sprintf('Label for filename "%s" has no label.',  $filename,  $labelType));
+                break;
+            default:
+                throw new LabelNotFound(sprintf(
+                    'Label for filename "%s" with unknown type "%s" was not found.',
+                    $filename,
+                    $labelType
+                ));
+        }
     }
 
     /**
@@ -206,9 +234,9 @@ class SoapAsendiaWebApiClient implements AsendiaWebApiClient
         }
 
         $labelFile = $filename;
-        $encodedContent = $response->RetrieveLabelAsPdfResult;
+        $content = $response->RetrieveLabelAsPdfResult;
 
-        return new PdfLabel($labelFile, $encodedContent);
+        return new PdfLabel($labelFile, $content);
     }
 
     /**
@@ -227,9 +255,9 @@ class SoapAsendiaWebApiClient implements AsendiaWebApiClient
         }
 
         $labelFile = $filename;
-        $encodedContent = $response->RetrieveLabelAsJpegResult;
+        $content = $response->RetrieveLabelAsJpegResult;
 
-        return new JpegLabel($labelFile, $encodedContent);
+        return new JpegLabel($labelFile, $content);
     }
 
     /**
@@ -248,9 +276,9 @@ class SoapAsendiaWebApiClient implements AsendiaWebApiClient
         }
 
         $labelFile = $filename;
-        $encodedContent = $response->RetrieveLabelAsPngResult;
+        $content = $response->RetrieveLabelAsPngResult;
 
-        return new PngLabel($labelFile, $encodedContent);
+        return new PngLabel($labelFile, $content);
     }
 
     private static function resolveManifestToXml($manifest)

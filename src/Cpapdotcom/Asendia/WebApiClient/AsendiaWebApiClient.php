@@ -17,13 +17,13 @@ interface AsendiaWebApiClient
     public function createShipment();
 
     /**
-     * @param string $shipmentNumber
+     * @param string $shipmentnumber
      * @param array|Manifest $manifest
      * @param int $labelType
      *
      * @return AddedShipmentPackages
      */
-    public function addPackagesToShipment($shipmentNumber, $manifest, $labelType);
+    public function addPackagesToShipment($shipmentnumber, $manifest, $labelType);
 
     /**
      * @param string $shipmentNumber
@@ -31,6 +31,14 @@ interface AsendiaWebApiClient
      * @return ClosedShipment
      */
     public function closeShipment($shipmentNumber);
+
+    /**
+     * @param int $labelType
+     * @param string $filename
+     *
+     * @return PdfLabel
+     */
+    public function retrieveLabel($labelType, $filename);
 
     /**
      * @param string $filename

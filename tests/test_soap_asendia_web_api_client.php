@@ -11,6 +11,9 @@ it('closes shipments', test_close_shipment());
 it('retrieves PDF labels', test_retrieve_label_as_pdf());
 it('retrieves JPEG labels', test_retrieve_label_as_jpeg());
 it('retrieves PNG labels', test_retrieve_label_as_png());
+it('retrieves labels (PDF)', test_retrieve_label_by_type_as_pdf());
+it('retrieves labels (JPEG)', test_retrieve_label_by_type_as_jpeg());
+it('retrieves labels (PNG)', test_retrieve_label_by_type_as_png());
 
 function test_create_shipment()
 {
@@ -172,6 +175,87 @@ function test_retrieve_label_as_png()
     ;
 }
 
+function test_retrieve_label_by_type_as_pdf()
+{
+    $filename = 'BWW_13940_BW00709000019.pdf';
+
+    $asendia_web_api_client = get_asendia_web_api_client(
+        'testuser',
+        'testpass',
+        function (DummyAsendiaWsdlClient $asendia_wsdl_client) use ($filename) {
+            return $asendia_wsdl_client
+                ->withRetrieveLabelAsPdf(get_successful_retrieve_label_as_pdf(), $filename)
+            ;
+        }
+    );
+
+    $pdf_label = $asendia_web_api_client->retrieveLabel(AsendiaWebApiClient::LABEL_TYPE_PDF, $filename);
+
+    $tempnam = tempnam(sys_get_temp_dir(), 'asendia_pdf_label');
+    $pdf_label->writeContentToFile($tempnam);
+
+    return
+        $filename === $pdf_label->getLabelFile() &&
+        'Test PDF' === $pdf_label->getContent() &&
+        'Test PDF' === file_get_contents($tempnam) &&
+        unlink($tempnam)
+    ;
+}
+
+function test_retrieve_label_by_type_as_jpeg()
+{
+    $filename = 'BWW_13940_BW00709000019.jpg';
+
+    $asendia_web_api_client = get_asendia_web_api_client(
+        'testuser',
+        'testpass',
+        function (DummyAsendiaWsdlClient $asendia_wsdl_client) use ($filename) {
+            return $asendia_wsdl_client
+                ->withRetrieveLabelAsJpeg(get_successful_retrieve_label_as_jpeg(), $filename)
+            ;
+        }
+    );
+
+    $jpeg_label = $asendia_web_api_client->retrieveLabel(AsendiaWebApiClient::LABEL_TYPE_JPEG, $filename);
+
+    $tempnam = tempnam(sys_get_temp_dir(), 'asendia_jpeg_label');
+    $jpeg_label->writeContentToFile($tempnam);
+
+    return
+        $filename === $jpeg_label->getLabelFile() &&
+        'Test JPEG' === $jpeg_label->getContent() &&
+        'Test JPEG' === file_get_contents($tempnam) &&
+        unlink($tempnam)
+    ;
+}
+
+function test_retrieve_label_by_type_as_png()
+{
+    $filename = 'BWW_13940_BW00709000019.png';
+
+    $asendia_web_api_client = get_asendia_web_api_client(
+        'testuser',
+        'testpass',
+        function (DummyAsendiaWsdlClient $asendia_wsdl_client) use ($filename) {
+            return $asendia_wsdl_client
+                ->withRetrieveLabelAsPng(get_successful_retrieve_label_as_png(), $filename)
+            ;
+        }
+    );
+
+    $png_label = $asendia_web_api_client->retrieveLabel(AsendiaWebApiClient::LABEL_TYPE_PNG, $filename);
+
+    $tempnam = tempnam(sys_get_temp_dir(), 'asendia_pngf_label');
+    $png_label->writeContentToFile($tempnam);
+
+    return
+        $filename === $png_label->getLabelFile() &&
+        'Test PNG' === $png_label->getContent() &&
+        'Test PNG' === file_get_contents($tempnam) &&
+        unlink($tempnam)
+    ;
+}
+
 function get_successful_create_shipment2_result()
 {
     $result = new stdClass();
@@ -214,7 +298,7 @@ function get_successful_close_shipment2()
 {
     $result = new stdClass();
     $result->errcode = 0;
-    $result->CloseShipment2 = '<?xml version="1.0" encoding="utf-8" standalone="yes"?><cn22webapi>
+    $result->CloseShipment2Result = '<?xml version="1.0" encoding="utf-8" standalone="yes"?><cn22webapi>
   <action>CloseShipment2</action>
   <errcode>0</errcode>
   <errortext>Success: Open Shipment TESTSHIPMENT closed.</errortext>
@@ -229,7 +313,7 @@ function get_successful_close_shipment2()
 function get_successful_retrieve_label_as_pdf()
 {
     $result = new stdClass();
-    $result->RetrieveLabelAsPdfResult = 'VGVzdCBQREY=';
+    $result->RetrieveLabelAsPdfResult = 'Test PDF';
 
     return $result;
 }
@@ -237,7 +321,7 @@ function get_successful_retrieve_label_as_pdf()
 function get_successful_retrieve_label_as_jpeg()
 {
     $result = new stdClass();
-    $result->RetrieveLabelAsJpegResult = 'VGVzdCBKUEVH';
+    $result->RetrieveLabelAsJpegResult = 'Test JPEG';
 
     return $result;
 }
@@ -245,7 +329,7 @@ function get_successful_retrieve_label_as_jpeg()
 function get_successful_retrieve_label_as_png()
 {
     $result = new stdClass();
-    $result->RetrieveLabelAsPngResult = 'VGVzdCBQTkc=';
+    $result->RetrieveLabelAsPngResult = 'Test PNG';
 
     return $result;
 }
