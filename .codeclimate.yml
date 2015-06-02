@@ -3,3 +3,4 @@ languages:
     PHP: true
 exclude_paths:
     - "tests/*"
+    - "example.php"
