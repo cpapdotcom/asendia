@@ -1,7 +1,7 @@
 <?php
 
-require_once 'vendor/autoload.php';
-require_once 'tests/fixtures.php';
+require_once __DIR__.'/autoload.php';
+require_once __DIR__.'/tests/fixtures.php';
 
 use Cpapdotcom\Asendia\WebApiClient\Adapter\Soap\AsendiaWsdlClientImpl;
 use Cpapdotcom\Asendia\WebApiClient\Adapter\Soap\SoapAsendiaWebApiClient;
