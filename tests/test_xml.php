@@ -16,7 +16,7 @@ function test_xml_serialization_using_manifest_facade()
     $manifest_xml_element = Manifest::createXmlFromManifest($manifest);
     $manifest_xml = pretty_print_simple_xml_element($manifest_xml_element);
 
-    return $expected_xml === $manifest_xml;
+    return assert($expected_xml === $manifest_xml, 'xml mismatch');
 }
 
 function test_xml_serialization_using_array_input()
@@ -26,6 +26,6 @@ function test_xml_serialization_using_array_input()
 
     $manifest_xml = pretty_print_simple_xml_element(Manifest::createXmlFromProperties(get_manifest_from_properties()));
 
-    return $expected_xml === $manifest_xml;
+    return assert($expected_xml === $manifest_xml, 'xml mismatch');
 }
 

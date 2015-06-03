@@ -30,8 +30,8 @@ function test_create_shipment()
     $created_shipment = $asendia_web_api_client->createShipment();
 
     return
-        'TESTSHIPMENT' === $created_shipment->getShipment() &&
-        'open' === $created_shipment->getStatus()
+        assert('TESTSHIPMENT' === $created_shipment->getShipment()) &&
+        assert('open' === $created_shipment->getStatus())
     ;
 }
 
@@ -63,12 +63,12 @@ function test_add_packages_to_shipment()
     );
 
     return
-        'TESTSHIPMENT' === $added_shipment_packages->getShipment() &&
-        2 === count($added_shipment_packages->getPackages()) &&
-        'BW00709000019' === $added_shipment_packages->getPackages()[0]->getPckId() &&
-        'BWW_13940_BW00709000019.pdf' === $added_shipment_packages->getPackages()[0]->getLabelFile() &&
-        'BW00709012345' === $added_shipment_packages->getPackages()[1]->getPckId() &&
-        'BWW_13940_BW00709012345.pdf' === $added_shipment_packages->getPackages()[1]->getLabelFile()
+        assert('TESTSHIPMENT' === $added_shipment_packages->getShipment()) &&
+        assert(2 === count($added_shipment_packages->getPackages())) &&
+        assert('BW00709000019' === $added_shipment_packages->getPackages()[0]->getPckId()) &&
+        assert('BWW_13940_BW00709000019.pdf' === $added_shipment_packages->getPackages()[0]->getLabelFile()) &&
+        assert('BW00709012345' === $added_shipment_packages->getPackages()[1]->getPckId()) &&
+        assert('BWW_13940_BW00709012345.pdf' === $added_shipment_packages->getPackages()[1]->getLabelFile())
     ;
 }
 
@@ -89,8 +89,8 @@ function test_close_shipment()
     $closed_shipment = $asendia_web_api_client->closeShipment($shipment_number);
 
     return
-        'TESTSHIPMENT' === $closed_shipment->getShipment() &&
-        'closed' === $closed_shipment->getStatus()
+        assert('TESTSHIPMENT' === $closed_shipment->getShipment()) &&
+        assert('closed' === $closed_shipment->getStatus())
     ;
 }
 
@@ -114,9 +114,9 @@ function test_retrieve_label_as_pdf()
     $pdf_label->writeContentToFile($tempnam);
 
     return
-        $filename === $pdf_label->getLabelFile() &&
-        'Test PDF' === $pdf_label->getContent() &&
-        'Test PDF' === file_get_contents($tempnam) &&
+        assert($filename === $pdf_label->getLabelFile()) &&
+        assert('Test PDF' === $pdf_label->getContent()) &&
+        assert('Test PDF' === file_get_contents($tempnam)) &&
         unlink($tempnam)
     ;
 }
@@ -141,9 +141,9 @@ function test_retrieve_label_as_jpeg()
     $jpeg_label->writeContentToFile($tempnam);
 
     return
-        $filename === $jpeg_label->getLabelFile() &&
-        'Test JPEG' === $jpeg_label->getContent() &&
-        'Test JPEG' === file_get_contents($tempnam) &&
+        assert($filename === $jpeg_label->getLabelFile()) &&
+        assert('Test JPEG' === $jpeg_label->getContent()) &&
+        assert('Test JPEG' === file_get_contents($tempnam)) &&
         unlink($tempnam)
     ;
 }
@@ -168,9 +168,9 @@ function test_retrieve_label_as_png()
     $png_label->writeContentToFile($tempnam);
 
     return
-        $filename === $png_label->getLabelFile() &&
-        'Test PNG' === $png_label->getContent() &&
-        'Test PNG' === file_get_contents($tempnam) &&
+        assert($filename === $png_label->getLabelFile()) &&
+        assert('Test PNG' === $png_label->getContent()) &&
+        assert('Test PNG' === file_get_contents($tempnam)) &&
         unlink($tempnam)
     ;
 }
@@ -195,9 +195,9 @@ function test_retrieve_label_by_type_as_pdf()
     $pdf_label->writeContentToFile($tempnam);
 
     return
-        $filename === $pdf_label->getLabelFile() &&
-        'Test PDF' === $pdf_label->getContent() &&
-        'Test PDF' === file_get_contents($tempnam) &&
+        assert($filename === $pdf_label->getLabelFile()) &&
+        assert('Test PDF' === $pdf_label->getContent()) &&
+        assert('Test PDF' === file_get_contents($tempnam)) &&
         unlink($tempnam)
     ;
 }
@@ -222,9 +222,9 @@ function test_retrieve_label_by_type_as_jpeg()
     $jpeg_label->writeContentToFile($tempnam);
 
     return
-        $filename === $jpeg_label->getLabelFile() &&
-        'Test JPEG' === $jpeg_label->getContent() &&
-        'Test JPEG' === file_get_contents($tempnam) &&
+        assert($filename === $jpeg_label->getLabelFile()) &&
+        assert('Test JPEG' === $jpeg_label->getContent()) &&
+        assert('Test JPEG' === file_get_contents($tempnam)) &&
         unlink($tempnam)
     ;
 }
@@ -249,9 +249,9 @@ function test_retrieve_label_by_type_as_png()
     $png_label->writeContentToFile($tempnam);
 
     return
-        $filename === $png_label->getLabelFile() &&
-        'Test PNG' === $png_label->getContent() &&
-        'Test PNG' === file_get_contents($tempnam) &&
+        assert($filename === $png_label->getLabelFile()) &&
+        assert('Test PNG' === $png_label->getContent()) &&
+        assert('Test PNG' === file_get_contents($tempnam)) &&
         unlink($tempnam)
     ;
 }
