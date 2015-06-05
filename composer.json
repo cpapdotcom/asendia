@@ -1,7 +1,8 @@
 {
     "name": "cpapdotcom/asendia",
-    "description": "Client for interacting with Asendia",
+    "description": "Client for interacting with Asendia (asendia.com)",
     "license": "MIT",
+    "keywords": ["asendia", "shipping"],
     "authors": [
         {
             "name": "Beau Simensen",
