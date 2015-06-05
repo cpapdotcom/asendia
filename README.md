@@ -3,6 +3,11 @@ Asendia Integration
 
 Provides integration with [Asendia](http://asendia.com).
 
+[![Latest Stable Version](https://poser.pugx.org/cpapdotcom/asendia/v/stable)](https://packagist.org/packages/cpapdotcom/asendia)
+[![Total Downloads](https://poser.pugx.org/cpapdotcom/asendia/downloads)](https://packagist.org/packages/cpapdotcom/asendia)
+[![Latest Unstable Version](https://poser.pugx.org/cpapdotcom/asendia/v/unstable)](https://packagist.org/packages/cpapdotcom/asendia)
+[![License](https://poser.pugx.org/cpapdotcom/asendia/license)](https://packagist.org/packages/cpapdotcom/asendia)
+<br>
 [![Build Status](https://travis-ci.org/cpapdotcom/asendia.svg?branch=master)](https://travis-ci.org/cpapdotcom/asendia)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/cpapdotcom/asendia/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/cpapdotcom/asendia/?branch=master)
 [![Code Climate](https://codeclimate.com/github/cpapdotcom/asendia/badges/gpa.svg)](https://codeclimate.com/github/cpapdotcom/asendia)
